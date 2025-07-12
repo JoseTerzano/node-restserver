@@ -34,6 +34,7 @@ const validarJWT = async (req = request, res = response, next) => {
         req.usuario = usuario;
 
         next();
+        
     } catch (error) {
         console.log('token👉', token);
         res.status(401).json({
