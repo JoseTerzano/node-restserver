@@ -22,7 +22,7 @@ const emailExiste = async (email = '') => {
 
 const existeUserPorId = async (id = '') => {
 
-    const existeUsuario = await Usuario.findById( id );
+    const existeUsuario = await Usuario.findById(id);
     if (!existeUsuario) {
         throw new Error(`El ID ${id} no esta registrado`)
     };
@@ -30,7 +30,7 @@ const existeUserPorId = async (id = '') => {
 
 const existeCategoriaPorId = async (id = '') => {
 
-    const existeCategoria = await Categoria.findById( id );
+    const existeCategoria = await Categoria.findById(id);
     if (!existeCategoria) {
         throw new Error(`El ID ${id} de la categoria no esta registrado`)
     };
@@ -38,15 +38,24 @@ const existeCategoriaPorId = async (id = '') => {
 
 const existeProductoPorId = async (id = '') => {
 
-    const existeProducto = await Producto.findById( id );
+    const existeProducto = await Producto.findById(id);
     if (!existeProducto) {
         throw new Error(`El ID ${id} de la categoria no esta registrado`)
     };
+};
+
+const coleccionesPermitidas = (coleccion = '', colecciones = []) => {
+
+    if (!colecciones.includes(coleccion)) {
+        throw new Error(`La coleccion ${coleccion} no esta permitida, se permite: ${colecciones}`)
+    };
+    return true;
 };
 module.exports = {
     esRoleValido,
     emailExiste,
     existeUserPorId,
     existeCategoriaPorId,
-    existeProductoPorId
+    existeProductoPorId,
+    coleccionesPermitidas
 }
